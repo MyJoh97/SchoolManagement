@@ -29,10 +29,15 @@ namespace SchoolManagement.Repositories
             return entity;
         }
 
-        public TEntity GET(Expression<Func<TEntity, bool>> expression)
+        public TEntity Get(Expression<Func<TEntity, bool>> expression)
         {
             var entity = _contexts.Set<TEntity>().FirstOrDefault(expression);
             return entity!;
+        }
+
+        public IEnumerable<TEntity> GetAll()
+        {
+            return _contexts.Set<TEntity>().ToList();
         }
 
         public TEntity Update(Expression<Func<TEntity, bool>> expression, TEntity entity)
