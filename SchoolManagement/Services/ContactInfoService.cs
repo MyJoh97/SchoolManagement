@@ -20,42 +20,42 @@ namespace SchoolManagement.Services
 
 
 
-        public ContactInfoEntity CreateCourse(string city, string phoneNumber, string homeAddress)
+        public ContactInfoEntity CreateContactInfo(string city, string phoneNumber, string homeAddress)
         {
             var contactInfoEntity = _ContactInfoRepository.Get(x => x.City == city && x.PhoneNumber == phoneNumber && x.HomeAddress == homeAddress);
             if (contactInfoEntity == null)
             {
-                contactInfoEntity = _ContactInfoRepository.Create(new ContactInfoEntity { CourseName = courseName });
+                contactInfoEntity = _ContactInfoRepository.Create(new ContactInfoEntity { City = city, PhoneNumber = phoneNumber, HomeAddress = homeAddress });
             }
 
             return contactInfoEntity;
         }
 
-        public ContactInfoEntity GetCourseByName(string courseName)
+        public ContactInfoEntity GetContactInfo(string city, string phoneNumber, string homeAddress)
         {
-            var contactInfoEntity = _ContactInfoRepository.Get(x => x.CourseName == courseName);
+            var contactInfoEntity = _ContactInfoRepository.Get(x => x.City == city && x.PhoneNumber == phoneNumber && x.HomeAddress == homeAddress);
             return contactInfoEntity;
         }
 
-        public ContactInfoEntity GetCourseById(int id)
+        public ContactInfoEntity GetContactInfoById(int id)
         {
             var contactInfoEntity = _ContactInfoRepository.Get(x => x.Id == id);
             return contactInfoEntity;
         }
 
-        public IEnumerable<ContactInfoEntity> GetCourses()
+        public IEnumerable<ContactInfoEntity> GetContactInfo()
         {
-            var courses = _courseRepository.GetAll();
-            return courses;
+            var contactInfo = _courseRepository.GetAll();
+            return contactInfo;
         }
 
-        public ContactInfoEntity UpdateCourse(ContactInfoEntity contactInfoEntity)
+        public ContactInfoEntity UpdateContactInfo(ContactInfoEntity contactInfoEntity)
         {
-            var contactInfoEntityUpdated = _ContactInfoRepository.Update(x => x.Id == courseEntity.Id, contactInfoEntity);
+            var contactInfoEntityUpdated = _ContactInfoRepository.Update(x => x.Id == contactInfoEntity.Id, contactInfoEntity);
             return contactInfoEntityUpdated;
         }
 
-        public void DeleteCourse(int id)
+        public void DeleteContactInfo(int id)
         {
             _ContactInfoRepository.Delete(x => x.Id == id);
         }
