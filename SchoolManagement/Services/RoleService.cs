@@ -42,10 +42,10 @@ namespace SchoolManagement.Services
             return roleEntity;
         }
 
-        public IEnumerable<RoleEntity> GetRole()
+        public IEnumerable<RoleEntity> GetRoles()
         {
-            var roleEntity = _roleRepository.GetAll();
-            return roleEntity;
+            var roles = _roleRepository.GetAll();
+            return roles;
         }
 
         public RoleEntity UpdateRole(RoleEntity roleEntity)

@@ -43,10 +43,10 @@ namespace SchoolManagement.Services
             return contactInfoEntity;
         }
 
-        public IEnumerable<ContactInfoEntity> GetContactInfo()
+        public IEnumerable<ContactInfoEntity> GetContactInfos()
         {
-            var contactInfo = _contactInfoRepository.GetAll();
-            return contactInfo;
+            var contactInfos = _contactInfoRepository.GetAll();
+            return contactInfos;
         }
 
         public ContactInfoEntity UpdateContactInfo(ContactInfoEntity contactInfoEntity)
