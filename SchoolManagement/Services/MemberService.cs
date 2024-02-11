@@ -23,6 +23,34 @@ namespace SchoolManagement.Services
 
 
 
+
+        public MemberEntity CreateMember(string firstName, string lastName, string email, string roleName, string city, string phoneNumber, string homeAddress)
+        {
+            var roleEntity = _roleService.CreateRole(roleName);
+            var contactInfoEntity = _contactInfoService.CreateContactInfo(city, phoneNumber, homeAddress);
+
+            var memberEntity = new MemberEntity
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                RoleId = roleEntity.Id,
+                ContactInfoId = contactInfoEntity.Id
+            };
+
+            memberEntity = _memberRepository.Create(memberEntity);
+            return memberEntity;
+        }
+
+
+
+
+        public MemberEntity GetMemberByEmail(string email)
+        {
+            var memberEntity = _memberRepository.Get(x => x.Email == email);
+            return memberEntity;
+        }
+
         public MemberEntity GetMemberById(int id)
         {
             var memberEntity = _memberRepository.Get(x => x.Id == id);

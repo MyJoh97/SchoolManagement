@@ -21,25 +21,25 @@ namespace SchoolManagement.Services
 
         public SchoolEntity CreateSchool(string schoolName)
         {
-            var SchoolEntity = _SchoolRepository.Get(x => x.SchoolName == schoolName);
-            if (SchoolEntity == null)
+            var schoolEntity = _SchoolRepository.Get(x => x.SchoolName == schoolName);
+            if (schoolEntity == null)
             {
-                SchoolEntity = _SchoolRepository.Create(new SchoolEntity { SchoolName = schoolName });
+                schoolEntity = _SchoolRepository.Create(new SchoolEntity { SchoolName = schoolName });
             }
 
-            return SchoolEntity;
+            return schoolEntity;
         }
 
         public SchoolEntity GetSchoolByName(string schoolName)
         {
-            var SchoolEntity = _SchoolRepository.Get(x => x.SchoolName == schoolName);
-            return SchoolEntity;
+            var schoolEntity = _SchoolRepository.Get(x => x.SchoolName == schoolName);
+            return schoolEntity;
         }
 
         public SchoolEntity GetSchoolById(int id)
         {
-            var SchoolEntity = _SchoolRepository.Get(x => x.Id == id);
-            return SchoolEntity;
+            var schoolEntity = _SchoolRepository.Get(x => x.Id == id);
+            return schoolEntity;
         }
 
         public IEnumerable<SchoolEntity> GetSchools()
@@ -48,10 +48,10 @@ namespace SchoolManagement.Services
             return schools;
         }
 
-        public SchoolEntity UpdateSchool(SchoolEntity SchoolEntity)
+        public SchoolEntity UpdateSchool(SchoolEntity schoolEntity)
         {
-            var SchoolEntityUpdated = _SchoolRepository.Update(x => x.Id == SchoolEntity.Id, SchoolEntity);
-            return SchoolEntityUpdated;
+            var schoolEntityUpdated = _SchoolRepository.Update(x => x.Id == schoolEntity.Id, schoolEntity);
+            return schoolEntityUpdated;
         }
 
         public void DeleteSchool(int id)

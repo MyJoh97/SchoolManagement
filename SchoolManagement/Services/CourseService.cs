@@ -42,8 +42,8 @@ namespace SchoolManagement.Services
 
         public CourseEntity GetCourseById(int id)
         {
-            var CourseEntity = _courseRepository.Get(x => x.Id == id);
-            return CourseEntity;
+            var courseEntity = _courseRepository.Get(x => x.Id == id);
+            return courseEntity;
         }
 
         public IEnumerable<CourseEntity> GetCourses()
@@ -52,10 +52,10 @@ namespace SchoolManagement.Services
             return courses;
         }
 
-        public CourseEntity UpdateCourse(CourseEntity CourseEntity)
+        public CourseEntity UpdateCourse(CourseEntity courseEntity)
         {
-            var CourseEntityUpdated = _courseRepository.Update(x => x.Id == CourseEntity.Id, CourseEntity);
-            return CourseEntityUpdated;
+            var courseEntityUpdated = _courseRepository.Update(x => x.Id == courseEntity.Id, courseEntity);
+            return courseEntityUpdated;
         }
 
         public void DeleteCourse(int id)
