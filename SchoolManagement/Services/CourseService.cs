@@ -11,35 +11,28 @@ namespace SchoolManagement.Services
     internal class CourseService
     {
         private readonly CourseRepository _courseRepository;
+        private readonly SchoolService _schoolService;
 
-        public CourseService(CourseRepository courseRepository)
+        public CourseService(CourseRepository courseRepository, SchoolService schoolService)
         {
             _courseRepository = courseRepository;
+            _schoolService = schoolService;
         }
 
 
 
-        public CourseEntity CreateCourse(string courseName)
+
+        public CourseEntity CreateCourse(string courseName, string schoolName)
         {
-            var courseEntity = _courseRepository.Get(x => x.CourseName == courseName);
-            if (courseEntity == null)
-            {
-                courseEntity = _courseRepository.Create(new CourseEntity { CourseName = courseName });
-            }
-
-            return courseEntity;
+            var schoolEntity = _schoolService.CreateSchool(schoolName);
         }
 
-        public CourseEntity GetCourseByName(string courseName)
-        {
-            var courseEntity = _courseRepository.Get(x => x.CourseName == courseName);
-            return courseEntity;
-        }
+
 
         public CourseEntity GetCourseById(int id)
         {
-            var courseEntity = _courseRepository.Get(x => x.Id == id);
-            return courseEntity;
+            var CourseEntity = _courseRepository.Get(x => x.Id == id);
+            return CourseEntity;
         }
 
         public IEnumerable<CourseEntity> GetCourses()
@@ -48,10 +41,10 @@ namespace SchoolManagement.Services
             return courses;
         }
 
-        public CourseEntity UpdateCourse(CourseEntity courseEntity)
+        public CourseEntity UpdateCourse(CourseEntity CourseEntity)
         {
-            var courseEntityUpdated = _courseRepository.Update(x => x.Id == courseEntity.Id, courseEntity);
-            return courseEntityUpdated;
+            var CourseEntityUpdated = _courseRepository.Update(x => x.Id == CourseEntity.Id, CourseEntity);
+            return CourseEntityUpdated;
         }
 
         public void DeleteCourse(int id)

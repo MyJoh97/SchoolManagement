@@ -10,56 +10,53 @@ namespace SchoolManagement.Services
 {
     internal class SchoolService
     {
-        private readonly SchoolRepository _schoolRepository;
-        private readonly CourseService _courseService;
+        private readonly SchoolRepository _SchoolRepository;
 
-        public SchoolService(SchoolRepository schoolRepository, CourseService courseService)
+        public SchoolService(SchoolRepository SchoolRepository)
         {
-            _schoolRepository = schoolRepository;
-            _courseService = courseService;
+            _SchoolRepository = SchoolRepository;
         }
 
 
 
-
-        public SchoolEntity CreateRole(string roleName)
+        public SchoolEntity CreateSchool(string schoolName)
         {
-            var SchoolEntity = _schoolRepository.Get(x => x.RoleName == roleName);
+            var SchoolEntity = _SchoolRepository.Get(x => x.SchoolName == schoolName);
             if (SchoolEntity == null)
             {
-                SchoolEntity = _schoolRepository.Create(new SchoolEntity { RoleName = roleName });
+                SchoolEntity = _SchoolRepository.Create(new SchoolEntity { SchoolName = schoolName });
             }
 
             return SchoolEntity;
         }
 
-        public SchoolEntity GetRole(string roleName)
+        public SchoolEntity GetSchoolByName(string schoolName)
         {
-            var SchoolEntity = _schoolRepository.Get(x => x.RoleName == roleName);
+            var SchoolEntity = _SchoolRepository.Get(x => x.SchoolName == schoolName);
             return SchoolEntity;
         }
 
-        public SchoolEntity GetRoleById(int id)
+        public SchoolEntity GetSchoolById(int id)
         {
-            var SchoolEntity = _schoolRepository.Get(x => x.Id == id);
+            var SchoolEntity = _SchoolRepository.Get(x => x.Id == id);
             return SchoolEntity;
         }
 
         public IEnumerable<SchoolEntity> GetSchools()
         {
-            var schools = _schoolRepository.GetAll();
+            var schools = _SchoolRepository.GetAll();
             return schools;
         }
 
         public SchoolEntity UpdateSchool(SchoolEntity SchoolEntity)
         {
-            var SchoolEntityUpdated = _schoolRepository.Update(x => x.Id == SchoolEntity.Id, SchoolEntity);
+            var SchoolEntityUpdated = _SchoolRepository.Update(x => x.Id == SchoolEntity.Id, SchoolEntity);
             return SchoolEntityUpdated;
         }
 
-        public void DeleteRole(int id)
+        public void DeleteSchool(int id)
         {
-            _schoolRepository.Delete(x => x.Id == id);
+            _SchoolRepository.Delete(x => x.Id == id);
         }
     }
 }
