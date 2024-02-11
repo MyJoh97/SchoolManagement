@@ -25,6 +25,17 @@ namespace SchoolManagement.Services
         public CourseEntity CreateCourse(string courseName, string schoolName)
         {
             var schoolEntity = _schoolService.CreateSchool(schoolName);
+
+
+            var courseEntity = new CourseEntity
+            {
+                CourseName = courseName,
+                SchoolId = schoolEntity.Id,
+            };
+
+            courseEntity = _courseRepository.Create(courseEntity);
+            return courseEntity;
+
         }
 
 
