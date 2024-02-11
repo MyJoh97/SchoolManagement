@@ -12,6 +12,7 @@ namespace SchoolManagement.Repositories
 
         public CourseRepository(DataContexts contexts) : base(contexts)
         {
+            _contexts = contexts;
         }
 
         public override CourseEntity Get(Expression<Func<CourseEntity, bool>> expression)
