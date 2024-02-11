@@ -24,7 +24,7 @@ namespace SchoolManagement.Services
 
 
 
-        public MemberEntity CreateMember(string firstName, string lastName, string email, string roleName, string city, string phoneNumber, string homeAddress)
+        public MemberEntity CreateMember(string firstName, string lastName, string email, string roleName, string city, string phoneNumber, string homeAddress, string roleName1)
         {
             var roleEntity = _roleService.CreateRole(roleName);
             var contactInfoEntity = _contactInfoService.CreateContactInfo(city, phoneNumber, homeAddress);

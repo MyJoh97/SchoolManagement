@@ -32,6 +32,8 @@ var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
 
 
 var schoolManagementUI = builder.Services.GetRequiredService<SchoolManagementUI>();
-//schoolManagementUI.CreateCourse_UI();
-//schoolManagementUI.GetCourses_UI();
+schoolManagementUI.CreateCourse_UI();
+schoolManagementUI.GetCourses_UI();
 schoolManagementUI.UpdateCourse_UI();
+schoolManagementUI.DeleteCourse_UI();
+schoolManagementUI.CreateMember_UI();
