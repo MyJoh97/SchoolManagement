@@ -22,25 +22,25 @@ namespace SchoolManagement.Repositories
 
 
 
-        public TEntity Create(TEntity entity)
+        public virtual TEntity Create(TEntity entity)
         {
             _contexts.Set<TEntity>().Add(entity);
             _contexts.SaveChanges();
             return entity;
         }
 
-        public TEntity Get(Expression<Func<TEntity, bool>> expression)
+        public virtual TEntity Get(Expression<Func<TEntity, bool>> expression)
         {
             var entity = _contexts.Set<TEntity>().FirstOrDefault(expression);
             return entity!;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return _contexts.Set<TEntity>().ToList();
         }
 
-        public TEntity Update(Expression<Func<TEntity, bool>> expression, TEntity entity)
+        public virtual TEntity Update(Expression<Func<TEntity, bool>> expression, TEntity entity)
         {
             var updateEntity = _contexts.Set<TEntity>().FirstOrDefault(expression);
             _contexts.Entry(updateEntity!).CurrentValues.SetValues(entity);
@@ -49,7 +49,7 @@ namespace SchoolManagement.Repositories
         }
 
 
-        public void Delete(Expression<Func<TEntity, bool>> expression)
+        public virtual void Delete(Expression<Func<TEntity, bool>> expression)
         {
             var entity = _contexts.Set<TEntity>().FirstOrDefault(expression);
             _contexts.Remove(entity!);
