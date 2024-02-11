@@ -11,21 +11,21 @@ namespace SchoolManagement.Services
 {
     internal class ContactInfoService
     {
-        private readonly ContactInfoService _contactInfoService;
+        private readonly ContactInfoRepository _contactInfoRepository;
 
-        public ContactInfoService(ContactInfoService contactInfoService)
+        public ContactInfoService(ContactInfoRepository contactInfoRepository)
         {
-            _contactInfoService = contactInfoService;
+            _contactInfoRepository = contactInfoRepository;
         }
 
 
 
         public ContactInfoEntity CreateContactInfo(string city, string phoneNumber, string homeAddress)
         {
-            var contactInfoEntity = _ContactInfoRepository.Get(x => x.City == city && x.PhoneNumber == phoneNumber && x.HomeAddress == homeAddress);
+            var contactInfoEntity = _contactInfoRepository.Get(x => x.City == city && x.PhoneNumber == phoneNumber && x.HomeAddress == homeAddress);
             if (contactInfoEntity == null)
             {
-                contactInfoEntity = _ContactInfoRepository.Create(new ContactInfoEntity { City = city, PhoneNumber = phoneNumber, HomeAddress = homeAddress });
+                contactInfoEntity = _contactInfoRepository.Create(new ContactInfoEntity { City = city, PhoneNumber = phoneNumber, HomeAddress = homeAddress });
             }
 
             return contactInfoEntity;
@@ -33,31 +33,31 @@ namespace SchoolManagement.Services
 
         public ContactInfoEntity GetContactInfo(string city, string phoneNumber, string homeAddress)
         {
-            var contactInfoEntity = _ContactInfoRepository.Get(x => x.City == city && x.PhoneNumber == phoneNumber && x.HomeAddress == homeAddress);
+            var contactInfoEntity = _contactInfoRepository.Get(x => x.City == city && x.PhoneNumber == phoneNumber && x.HomeAddress == homeAddress);
             return contactInfoEntity;
         }
 
         public ContactInfoEntity GetContactInfoById(int id)
         {
-            var contactInfoEntity = _ContactInfoRepository.Get(x => x.Id == id);
+            var contactInfoEntity = _contactInfoRepository.Get(x => x.Id == id);
             return contactInfoEntity;
         }
 
         public IEnumerable<ContactInfoEntity> GetContactInfo()
         {
-            var contactInfo = _courseRepository.GetAll();
+            var contactInfo = _contactInfoRepository.GetAll();
             return contactInfo;
         }
 
         public ContactInfoEntity UpdateContactInfo(ContactInfoEntity contactInfoEntity)
         {
-            var contactInfoEntityUpdated = _ContactInfoRepository.Update(x => x.Id == contactInfoEntity.Id, contactInfoEntity);
+            var contactInfoEntityUpdated = _contactInfoRepository.Update(x => x.Id == contactInfoEntity.Id, contactInfoEntity);
             return contactInfoEntityUpdated;
         }
 
         public void DeleteContactInfo(int id)
         {
-            _ContactInfoRepository.Delete(x => x.Id == id);
+            _contactInfoRepository.Delete(x => x.Id == id);
         }
     }
 }
